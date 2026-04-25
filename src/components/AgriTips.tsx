@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { BookOpen, Droplets, Sun, Sprout, ShieldAlert } from 'lucide-react';
 

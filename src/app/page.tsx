@@ -1,16 +1,13 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+"use client";
 
 import { motion } from 'motion/react';
-import Chat from './components/Chat';
-import MarketBoard from './components/MarketBoard';
-import AgriTips from './components/AgriTips';
-import { Leaf, Menu, X, Landmark, TreePalm } from 'lucide-react';
+import Chat from '@/components/Chat';
+import MarketBoard from '@/components/MarketBoard';
+import AgriTips from '@/components/AgriTips';
+import { Menu, TreePalm } from 'lucide-react';
 import { useState } from 'react';
 
-export default function App() {
+export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (

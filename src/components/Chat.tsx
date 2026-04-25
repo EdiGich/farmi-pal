@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, User, Bot, Loader2, TrendingUp, BookOpen, ArrowLeft, TreePalm } from 'lucide-react';
