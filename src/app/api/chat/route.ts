@@ -47,7 +47,7 @@ Mtwapa:
 
 export async function POST(request: Request) {
   try {
-    const { message, history } = await request.json();
+    const { message, history, systemInstruction } = await request.json();
 
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
         { role: "user", parts: [{ text: message }] },
       ],
       config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
+        systemInstruction: systemInstruction || SYSTEM_INSTRUCTION,
         temperature: 0.8,
       },
     });
