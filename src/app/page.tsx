@@ -1,14 +1,34 @@
 "use client";
 
-import { motion } from 'motion/react';
+import { useState } from 'react';
 import Chat from '@/components/Chat';
 import MarketBoard from '@/components/MarketBoard';
 import AgriTips from '@/components/AgriTips';
-import { Menu, TreePalm } from 'lucide-react';
-import { useState } from 'react';
+import AgriTutorChat from '@/components/AgriTutorChat';
+import { Menu } from 'lucide-react';
+
+type Tab = 'chat' | 'market' | 'agri';
+
+const navItems: { id: Tab; emoji: string; label: string }[] = [
+  { id: 'chat',   emoji: '💬', label: 'Mjadala (Chat)' },
+  { id: 'market', emoji: '📊', label: 'Bei za Soko' },
+  { id: 'agri',   emoji: '🎓', label: 'Agri-Tutor' },
+];
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<Tab>('chat');
+
+  const handleNav = (tab: Tab) => {
+    setActiveTab(tab);
+    setIsSidebarOpen(false);
+  };
+
+  const tabLabel: Record<Tab, string> = {
+    chat:   'Mjadala — General Chat',
+    market: 'Bei za Soko — Market Prices',
+    agri:   'Agri-Tutor — Agricultural Education',
+  };
 
   return (
     <div className="flex h-screen bg-[#F8F9FA] overflow-hidden">
@@ -26,18 +46,25 @@ export default function Home() {
         </div>
 
         <nav className="flex-1 space-y-2">
-          <div className="flex items-center gap-3 p-3 bg-white/10 rounded-lg cursor-pointer">
-            <span className="text-lg">💬</span>
-            <span className="font-medium">Mjadala (Chat)</span>
-          </div>
-          <div className="flex items-center gap-3 p-3 hover:bg-white/5 rounded-lg cursor-pointer transition-colors group">
-            <span className="text-lg opacity-70 group-hover:opacity-100">📊</span>
-            <span className="font-medium text-white/80 group-hover:text-white">Bei za Soko</span>
-          </div>
-          <div className="flex items-center gap-3 p-3 hover:bg-white/5 rounded-lg cursor-pointer transition-colors group">
-            <span className="text-lg opacity-70 group-hover:opacity-100">🎓</span>
-            <span className="font-medium text-white/80 group-hover:text-white">Agri-Tutor</span>
-          </div>
+          {navItems.map(item => (
+            <button
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className={`w-full flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors text-left ${
+                activeTab === item.id
+                  ? 'bg-white/20 text-white font-semibold'
+                  : 'hover:bg-white/5 text-white/80 hover:text-white'
+              }`}
+            >
+              <span className={`text-lg ${activeTab === item.id ? 'opacity-100' : 'opacity-70'}`}>
+                {item.emoji}
+              </span>
+              <span className="font-medium">{item.label}</span>
+              {activeTab === item.id && (
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#F27D26]" />
+              )}
+            </button>
+          ))}
         </nav>
 
         <div className="mt-auto p-4 bg-black/10 rounded-xl border border-white/10 shrink-0">
@@ -50,21 +77,23 @@ export default function Home() {
       </aside>
 
       {/* Main Area */}
-      <div className="flex-1 flex flex-col overflow-hidden relative">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <header className="h-16 bg-white border-b border-gray-200 px-6 lg:px-8 flex items-center justify-between shadow-sm shrink-0">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
             >
               <Menu size={20} />
             </button>
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-semibold text-gray-500 hidden sm:inline">Sema Mkulima! FarmiPal iko Online</span>
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              <span className="text-sm font-semibold text-gray-500 hidden sm:inline">
+                {tabLabel[activeTab]}
+              </span>
             </div>
           </div>
-          
+
           <div className="flex gap-4 items-center">
             <button className="px-4 py-1.5 border border-[#2D5A27] text-[#2D5A27] rounded-md text-sm font-bold hover:bg-[#2D5A27]/5 transition-colors hidden sm:block">
               Msaada wa Haraka
@@ -75,23 +104,48 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="flex-1 p-4 lg:p-6 grid grid-cols-12 gap-6 overflow-hidden">
-          {/* Chat Container */}
-          <section className="col-span-12 lg:col-span-7 h-full flex flex-col overflow-hidden">
-            <Chat />
-          </section>
+        <main className="flex-1 p-4 lg:p-6 overflow-hidden">
 
-          {/* Side Panels Container */}
-          <section className="hidden lg:flex lg:col-span-12 xl:col-span-5 flex-col gap-6 overflow-y-auto no-scrollbar pb-6">
-            <MarketBoard />
-            <AgriTips />
-          </section>
+          {/* Chat Tab */}
+          {activeTab === 'chat' && (
+            <div className="h-full grid grid-cols-12 gap-6">
+              <section className="col-span-12 lg:col-span-7 h-full flex flex-col overflow-hidden">
+                <Chat />
+              </section>
+              <section className="hidden lg:flex lg:col-span-5 flex-col gap-6 overflow-y-auto no-scrollbar pb-6">
+                <MarketBoard />
+                <AgriTips />
+              </section>
+            </div>
+          )}
+
+          {/* Market Tab */}
+          {activeTab === 'market' && (
+            <div className="h-full overflow-y-auto no-scrollbar">
+              <div className="max-w-2xl mx-auto">
+                <MarketBoard />
+              </div>
+            </div>
+          )}
+
+          {/* Agri-Tutor Tab */}
+          {activeTab === 'agri' && (
+            <div className="h-full grid grid-cols-12 gap-6">
+              <section className="col-span-12 lg:col-span-7 h-full flex flex-col overflow-hidden">
+                <AgriTutorChat />
+              </section>
+              <section className="hidden lg:flex lg:col-span-5 flex-col gap-6 overflow-y-auto no-scrollbar pb-6">
+                <AgriTips />
+              </section>
+            </div>
+          )}
+
         </main>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Overlay */}
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
