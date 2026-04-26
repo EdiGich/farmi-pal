@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     const { message, history, systemInstruction } = await request.json();
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-flash-latest",
       contents: [
         ...history.map((h: { role: string; parts: { text: string }[] }) => ({
           role: h.role,

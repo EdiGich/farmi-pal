@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { TrendingUp, MapPin, Package, Info } from 'lucide-react';
 
@@ -23,6 +24,13 @@ const marketData = [
 ];
 
 export default function MarketBoard() {
+  const [trends, setTrends] = useState<number[]>([]);
+
+  useEffect(() => {
+    // Generate random percentages once on mount
+    setTrends(marketData[0].items.map(() => Math.floor(Math.random() * 15) + 1));
+  }, []);
+
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-200">
       <div className="flex justify-between items-center mb-6">
@@ -51,7 +59,7 @@ export default function MarketBoard() {
                 <p className={`text-[9px] font-medium ${
                   item.trend === 'up' ? 'text-green-600' : 'text-red-500'
                 }`}>
-                  {item.trend === 'up' ? '↑' : '↓'} {Math.floor(Math.random() * 15) + 1}% tangu jana
+                  {item.trend === 'up' ? '↑' : '↓'} {trends[i] || '--'}% tangu jana
                 </p>
               </div>
             </div>
