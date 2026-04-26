@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, Loader2, BookOpen, Sprout, Droplets, ShieldAlert, Leaf } from 'lucide-react';
+import MarkdownText from './MarkdownText';
 
 interface Message {
   role: 'user' | 'model';
@@ -151,7 +152,7 @@ export default function AgriTutorChat() {
                     : 'bg-[#F0F7EE] border border-[#2D5A27]/10 text-gray-800 rounded-tl-none'
                 }`}
               >
-                {m.text}
+                <MarkdownText text={m.text} />
               </div>
               <span className="text-[10px] mt-1 text-gray-400 px-1">
                 {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
