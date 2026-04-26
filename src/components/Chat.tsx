@@ -99,9 +99,7 @@ export default function Chat() {
                       : 'bg-gray-100 text-gray-800 rounded-tl-none'
                 }`}
               >
-                <div className="whitespace-pre-wrap">
-                  <MarkdownText text={m.text} />
-                </div>
+                <MarkdownText text={m.text} />
               </div>
               <span className="text-[10px] mt-1 text-gray-400 font-medium lowercase px-1">
                 {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

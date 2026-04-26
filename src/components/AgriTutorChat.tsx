@@ -146,7 +146,7 @@ export default function AgriTutorChat() {
               className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}
             >
               <div
-                className={`max-w-[90%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${
+                className={`max-w-[90%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
                   m.role === 'user'
                     ? 'bg-[#2D5A27] text-white rounded-tr-none'
                     : 'bg-[#F0F7EE] border border-[#2D5A27]/10 text-gray-800 rounded-tl-none'
