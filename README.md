@@ -15,16 +15,17 @@
 
 ## 🌟 What is FarmiPal?
 
-**FarmiPal** is a specialized AI-powered assistant designed to empower farmers in Kenya, particularly in the Pwani (Coastal) region. It bridges the gap between complex agricultural science and local farming realities by providing advice in a natural blend of **Sheng and English**.
+**FarmiPal** is a specialized AI-powered assistant designed to empower farmers across **Kenya**. It bridges the gap between complex agricultural science and local farming realities by providing advice in a natural blend of **Sheng, Swahili, and English**, while also supporting regional dialects.
 
-Whether you're negotiating prices at **Kongowea Market** or trying to understand soil pH levels, FarmiPal is your street-smart companion in the field.
+Whether you're negotiating prices at **Wakulima Market** in Nairobi, checking surplus zones in **Molo**, or trying to understand soil pH levels in **Trans-Nzoia**, FarmiPal is your street-smart companion in the field.
 
 ## 🚀 Key Features
 
-- 💬 **Mjadala (AI Chat)**: A "Market Negotiator" and "Agri-Tutor" in one. Get counter-offer scripts for middlemen (mabroker) and simple explanations for complex farming tech.
-- 📊 **Bei za Soko**: Real-time (simulated) market trends for Coconut, Maize, and Mangoes in markets like **Kongowea**, **Marikiti**, and **Mtwapa**.
-- 🎓 **Agri-Tutor**: Localized lessons on soil health, irrigation, and organic pest control using relatable Pwani analogies.
-- 🌤️ **Localized Weather**: Real-time weather monitoring for coastal farming hubs.
+- 💬 **Mjadala (AI Chat)**: A "Market Negotiator," "Agri-Tutor," and "Supply Finder" in one. Get counter-offer scripts for middlemen (mabroker) and simple explanations for complex farming tech in languages you understand.
+- 📊 **Bei za Soko**: Real-time (simulated) market trends for major Kenyan hubs like **Nairobi**, **Kisumu**, **Eldoret**, and **Mombasa**.
+- 🎓 **Agri-Tutor**: Localized lessons on soil health, irrigation, and organic pest control using relatable Kenyan analogies (e.g., "Chama savings" for soil nutrients).
+- 🚛 **Surplus Zones**: Identify regions with excess produce supply to find the best deals or avoid market saturation.
+- 🌤️ **National Context**: Weather monitoring and agricultural advice tailored to Kenya's diverse climatic zones.
 
 ## 🛠️ Tech Stack
 

@@ -5,14 +5,16 @@ import Chat from '@/components/Chat';
 import MarketBoard from '@/components/MarketBoard';
 import AgriTips from '@/components/AgriTips';
 import AgriTutorChat from '@/components/AgriTutorChat';
+import SurplusFinder from '@/components/SurplusFinder';
 import { Menu } from 'lucide-react';
 
-type Tab = 'chat' | 'market' | 'agri';
+type Tab = 'chat' | 'market' | 'agri' | 'surplus';
 
 const navItems: { id: Tab; emoji: string; label: string }[] = [
-  { id: 'chat',   emoji: '💬', label: 'Mjadala (Chat)' },
-  { id: 'market', emoji: '📊', label: 'Bei za Soko' },
-  { id: 'agri',   emoji: '🎓', label: 'Agri-Tutor' },
+  { id: 'chat',    emoji: '💬', label: 'Mjadala (Chat)' },
+  { id: 'market',  emoji: '📊', label: 'Bei za Soko' },
+  { id: 'agri',    emoji: '🎓', label: 'Agri-Tutor' },
+  { id: 'surplus', emoji: '🚛', label: 'Surplus Zones' },
 ];
 
 export default function Home() {
@@ -25,9 +27,10 @@ export default function Home() {
   };
 
   const tabLabel: Record<Tab, string> = {
-    chat:   'Mjadala — General Chat',
-    market: 'Bei za Soko — Market Prices',
-    agri:   'Agri-Tutor — Agricultural Education',
+    chat:    'Mjadala — National Chat',
+    market:  'Bei za Soko — Market Prices',
+    agri:    'Agri-Tutor — Agricultural Education',
+    surplus: 'Surplus Zones — Find Excess Supply',
   };
 
   return (
@@ -40,7 +43,7 @@ export default function Home() {
       `}>
         <div className="flex items-center gap-3 mb-10">
           <div className="w-10 h-10 bg-[#F27D26] rounded-lg flex items-center justify-center text-xl font-bold text-white">
-            P
+            F
           </div>
           <h1 className="text-xl font-bold tracking-tight">FarmiPal</h1>
         </div>
@@ -68,11 +71,11 @@ export default function Home() {
         </nav>
 
         <div className="mt-auto p-4 bg-black/10 rounded-xl border border-white/10 shrink-0">
-          <p className="text-[10px] text-white/60 mb-1 uppercase tracking-wider">Hali ya Hewa: Mtwapa</p>
+          <p className="text-[10px] text-white/60 mb-1 uppercase tracking-wider">Hali ya Hewa: Nairobi</p>
           <p className="text-lg font-semibold flex items-center gap-2">
-            29°C <span className="text-xl">🌤️</span>
+            24°C <span className="text-xl">🌤️</span>
           </p>
-          <p className="text-[10px] text-white/40 mt-2 italic">Active: Pwani Region</p>
+          <p className="text-[10px] text-white/40 mt-2 italic">Active: Kenya National</p>
         </div>
       </aside>
 
@@ -135,8 +138,26 @@ export default function Home() {
                 <AgriTutorChat />
               </section>
               <section className="hidden lg:flex lg:col-span-5 flex-col gap-6 overflow-y-auto no-scrollbar pb-6">
+                <SurplusFinder />
                 <AgriTips />
               </section>
+            </div>
+          )}
+
+          {/* Surplus Tab */}
+          {activeTab === 'surplus' && (
+            <div className="h-full overflow-y-auto no-scrollbar">
+              <div className="max-w-2xl mx-auto space-y-6 pb-10">
+                <SurplusFinder />
+                <div className="p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+                  <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <span className="text-lg">📢</span> Surplus Information
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Data hii huonyesha maeneo ambapo mavuno ni mengi kuliko mahitaji. Hii ni nafasi nzuri kwa wafanyabiashara kupata bidhaa kwa bei nafuu, na kwa wakulima kutafuta soko mbadala au kuanza kukausha mazao ili yasiharibike.
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
